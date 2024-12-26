@@ -1,0 +1,3836 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "4.1.0",
+    "title": "Analytics - Public APIs",
+    "description": "API Doc for Analytics - Public APIs"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3030",
+      "description": "Local Development"
+    },
+    {
+      "url": "https://analytics.dev.viewzenlabs.in/",
+      "description": "DEV Server"
+    }
+  ],
+  "paths": {
+    "/api/{tenantId}/datamgmt/datasets/columns": {
+      "post": {
+        "tags": ["Datasets"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "payload",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "dataset_shortname": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "dest_col_name": {
+                            "type": "string"
+                          },
+                          "data_type": {
+                            "type": "string"
+                          },
+                          "column_name": {
+                            "type": "string"
+                          },
+                          "dataset_shortname": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "dataset_shortnames": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/{tenantId}/thesaurus/main/all": {
+      "post": {
+        "tags": ["Thesaurus Main"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "payload",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "mappings": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "_id": {
+                            "type": "string"
+                          },
+                          "tenant_id": {
+                            "type": "string"
+                          },
+                          "context_shortname": {
+                            "type": "string"
+                          },
+                          "mapped_dataset_shortname": {
+                            "type": "string"
+                          },
+                          "mapped_col_name": {
+                            "type": "string"
+                          },
+                          "isExpression": {
+                            "type": "boolean"
+                          }
+                        }
+                      }
+                    },
+                    "hierarchies": {
+                      "type": "object",
+                      "properties": {
+                        "context_shortname": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "hierarchyDetails": {
+                      "type": "object",
+                      "properties": {
+                        "context_shortname": {
+                          "type": "object",
+                          "properties": {
+                            "_id": {
+                              "type": "string"
+                            },
+                            "shortname": {
+                              "type": "string"
+                            },
+                            "path": {
+                              "type": "object",
+                              "properties": {
+                                "context_shortname": {
+                                  "type": "string"
+                                },
+                                "children": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "_id": {
+                                        "type": "string"
+                                      },
+                                      "context_shortname": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  }
+                                },
+                                "_id": {
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "context_shortnames": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
+                            "is_global": {
+                              "type": "boolean"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "formulae": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          },
+                          "shortname": {
+                            "type": "string"
+                          },
+                          "dataset_shortnames": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "expressions": {
+                      "type": "object",
+                      "properties": {
+                        "dataset_shortname": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "dataset_shortname": {
+                                "type": "string"
+                              },
+                              "data_type": {
+                                "type": "string"
+                              },
+                              "column_name": {
+                                "type": "string"
+                              },
+                              "dest_col_name": {
+                                "type": "string"
+                              },
+                              "is_nested": {
+                                "type": "boolean"
+                              },
+                              "is_expression": {
+                                "type": "boolean"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "contexts": {
+                      "type": "object",
+                      "properties": {
+                        "context_shortname": {
+                          "type": "object",
+                          "properties": {
+                            "name": {
+                              "type": "string"
+                            },
+                            "shortname": {
+                              "type": "string"
+                            },
+                            "context_type": {
+                              "type": "string"
+                            },
+                            "master_col_name": {
+                              "type": "string"
+                            },
+                            "geography_level": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "datasets": {
+                      "type": "object",
+                      "properties": {
+                        "dataset_shortname": {
+                          "type": "object",
+                          "properties": {
+                            "default_column": {
+                              "type": "string"
+                            },
+                            "default_columns": {
+                              "type": "object",
+                              "properties": {
+                                "string": {
+                                  "type": "string"
+                                },
+                                "number": {
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "shortname": {
+                              "type": "string"
+                            },
+                            "name": {
+                              "type": "string"
+                            },
+                            "connector_shortname": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "datasetShortNames": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/{tenantId}/dashboard/{dashboardId}": {
+      "get": {
+        "tags": ["Dashboard"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dashboardId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "payload",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-access",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-public-access",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DashboardResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/api/{tenantId}/dashboard/components": {
+      "post": {
+        "tags": ["Dashboard"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "payload",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-access",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-public-access",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SpecificComponentsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "componentIds": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "dashboardIds": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/{tenantId}/dashboard/modify/{dashboardId}/sheet/{sheetId}/components": {
+      "get": {
+        "tags": ["Dashboard"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dashboardId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sheetId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "payload",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-access",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-public-access",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComponentResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/{tenantId}/fetchstoredata/{dashboardId}/{sheetId}/{componentId}/data": {
+      "post": {
+        "tags": ["Data Store"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dashboardId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sheetId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "componentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "payload",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "req",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$schema": "http://json-schema.org/draft-04/schema#",
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "data": {
+                            "type": "object",
+                            "properties": {
+                              "data": {
+                                "type": "object",
+                                "properties": {
+                                  "dataset_shortname-column_name_1-aggregate_type": {
+                                    "type": "integer"
+                                  },
+                                  "dataset_shortname-column_name_2-aggregate_type": {
+                                    "type": "integer"
+                                  }
+                                }
+                              },
+                              "children": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "data": {
+                                      "type": "object",
+                                      "properties": {
+                                        "dataset_shortname-column_name": {
+                                          "type": "string"
+                                        },
+                                        "dataset_shortname-column_name_1-aggregate_type": {
+                                          "type": "integer"
+                                        },
+                                        "dataset_shortname-column_name_2-aggregate_type": {
+                                          "type": "integer"
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$schema": "http://json-schema.org/draft-04/schema#",
+                "type": "object",
+                "properties": {
+                  "extendedStats": {
+                    "type": "boolean"
+                  },
+                  "merge": {
+                    "type": "boolean"
+                  },
+                  "responseFormatOptions": {
+                    "type": "object",
+                    "properties": {
+                      "showColnameInData": {
+                        "type": "boolean"
+                      },
+                      "showColnameAsGroup": {
+                        "type": "boolean"
+                      },
+                      "includeDocCount": {
+                        "type": "boolean"
+                      },
+                      "names": {
+                        "type": "object",
+                        "properties": {
+                          "docCountName": {
+                            "type": "string"
+                          },
+                          "mainGroupName": {
+                            "type": "string"
+                          },
+                          "childGroupName": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "flattenedExtendedStats": {
+                        "type": "boolean"
+                      },
+                      "flattenedChildren": {
+                        "type": "boolean"
+                      },
+                      "flattenData": {
+                        "type": "boolean"
+                      },
+                      "size": {
+                        "type": "integer"
+                      }
+                    }
+                  },
+                  "exportNow": {
+                    "type": "boolean"
+                  },
+                  "pageNo": {
+                    "type": "integer"
+                  },
+                  "endUserFilters": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string"
+                      },
+                      "values": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string"
+                            },
+                            "value": {
+                              "type": "object",
+                              "properties": {
+                                "datasetShortName": {
+                                  "type": "string"
+                                },
+                                "colName": {
+                                  "type": "string"
+                                },
+                                "isExpression": {
+                                  "type": "boolean"
+                                },
+                                "contextShortName": {
+                                  "type": "string"
+                                },
+                                "valueType": {
+                                  "type": "string"
+                                },
+                                "operator": {
+                                  "type": "string"
+                                },
+                                "staticValue": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "forDatasetShortname": {
+                    "type": "string"
+                  },
+                  "precision": {
+                    "type": "number"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/{tenantId}/fetchstoredata/pivot/{dashboardId}/{sheetId}/{componentId}/handshake": {
+      "post": {
+        "tags": ["Pivot Operations"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dashboardId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sheetId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "componentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "version": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/{tenantId}/fetchstoredata/pivot/{dashboardId}/{sheetId}/{componentId}/fields": {
+      "post": {
+        "tags": ["Pivot Operations"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dashboardId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sheetId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "componentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "payload",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$schema": "http://json-schema.org/draft-04/schema#",
+                  "type": "object",
+                  "properties": {
+                    "fields": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "uniqueName": {
+                            "type": "string"
+                          },
+                          "type": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "aggregations": {
+                      "type": "object",
+                      "properties": {
+                        "any": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "string": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "date": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "number": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "filters": {
+                      "type": "object",
+                      "properties": {
+                        "date": {
+                          "type": "object",
+                          "properties": {
+                            "members": {
+                              "type": "boolean"
+                            },
+                            "query": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
+                            "valueQuery": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        },
+                        "number": {
+                          "type": "object",
+                          "properties": {
+                            "members": {
+                              "type": "boolean"
+                            },
+                            "query": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
+                            "valueQuery": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        },
+                        "string": {
+                          "type": "object",
+                          "properties": {
+                            "members": {
+                              "type": "boolean"
+                            },
+                            "query": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
+                            "valueQuery": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        },
+                        "advanced": {
+                          "type": "boolean"
+                        }
+                      }
+                    },
+                    "sorted": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "drillDown": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/{tenantId}/fetchstoredata/pivot/{dashboardId}/{sheetId}/{componentId}/select": {
+      "post": {
+        "tags": ["Pivot Operations"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dashboardId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sheetId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "componentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "payload",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "request",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "aggs": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "values": {
+                            "type": "object",
+                            "properties": {
+                              "dataset_shortname-column_name-aggregate_type": {
+                                "type": "object",
+                                "properties": {
+                                  "aggregate_type": {
+                                    "type": "integer"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "keys": {
+                            "type": "object",
+                            "properties": {
+                              "dataset_shortname-column_name": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$schema": "http://json-schema.org/draft-04/schema#",
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string"
+                  },
+                  "query": {
+                    "type": "object",
+                    "properties": {
+                      "aggs": {
+                        "type": "object",
+                        "properties": {
+                          "by": {
+                            "type": "object",
+                            "properties": {
+                              "rows": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "uniqueName": {
+                                      "type": "string"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "values": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "func": {
+                                  "type": "string"
+                                },
+                                "field": {
+                                  "type": "object",
+                                  "properties": {
+                                    "uniqueName": {
+                                      "type": "string"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "querytype": {
+                    "type": "string"
+                  },
+                  "page": {
+                    "type": "integer"
+                  },
+                  "endUserFilters": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string"
+                      },
+                      "values": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string"
+                            },
+                            "value": {
+                              "type": "object",
+                              "properties": {
+                                "datasetShortName": {
+                                  "type": "string"
+                                },
+                                "colName": {
+                                  "type": "string"
+                                },
+                                "isExpression": {
+                                  "type": "boolean"
+                                },
+                                "contextShortName": {
+                                  "type": "string"
+                                },
+                                "valueType": {
+                                  "type": "string"
+                                },
+                                "operator": {
+                                  "type": "string"
+                                },
+                                "staticValue": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "drillDown": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/{tenantId}/fetchstoredata/{dashboardId}/{sheetId}/{componentId}/stats": {
+      "post": {
+        "tags": ["Statistics"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dashboardId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sheetId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "componentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "payload",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "errors": {
+                      "type": "array",
+                      "items": {}
+                    },
+                    "result": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "data": {
+                            "type": "object",
+                            "properties": {
+                              "column_name": {
+                                "type": "object",
+                                "properties": {
+                                  "column_value": {
+                                    "oneOf": [
+                                      { "type": "string" },
+                                      { "type": "number" },
+                                      { "type": "date" }
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "endUserFilters": {
+                    "type": "object"
+                  },
+                  "cols": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "datasetShortName": {
+                          "type": "string"
+                        },
+                        "isExpression": {
+                          "type": "boolean"
+                        },
+                        "isPrimary": {
+                          "type": "boolean"
+                        },
+                        "colName": {
+                          "type": "string"
+                        },
+                        "contextShortName": {
+                          "type": "string"
+                        },
+                        "showContext": {
+                          "type": "boolean"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/{tenantId}/fetchstoredata/{dashboardId}/stats": {
+      "post": {
+        "tags": ["Statistics"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dashboardId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "payload",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "errors": {
+                      "type": "array",
+                      "items": {}
+                    },
+                    "result": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "data": {
+                            "type": "object",
+                            "properties": {
+                              "column_name": {
+                                "type": "object",
+                                "properties": {
+                                  "column_value": {
+                                    "oneOf": [
+                                      { "type": "string" },
+                                      { "type": "number" },
+                                      { "type": "date" }
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "endUserFilters": {
+                    "type": "object"
+                  },
+                  "cols": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "datasetShortName": {
+                          "type": "string"
+                        },
+                        "isExpression": {
+                          "type": "boolean"
+                        },
+                        "isPrimary": {
+                          "type": "boolean"
+                        },
+                        "colName": {
+                          "type": "string"
+                        },
+                        "contextShortName": {
+                          "type": "string"
+                        },
+                        "showContext": {
+                          "type": "boolean"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/{tenantId}/fetchstoredata/stats": {
+      "post": {
+        "tags": ["Statistics"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "payload",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "errors": {
+                      "type": "array",
+                      "items": {}
+                    },
+                    "result": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "data": {
+                            "type": "object",
+                            "properties": {
+                              "column_name": {
+                                "type": "object",
+                                "properties": {
+                                  "column_value": {
+                                    "oneOf": [
+                                      { "type": "string" },
+                                      { "type": "number" },
+                                      { "type": "date" }
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "endUserFilters": {
+                    "type": "object"
+                  },
+                  "cols": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "datasetShortName": {
+                          "type": "string"
+                        },
+                        "isExpression": {
+                          "type": "boolean"
+                        },
+                        "isPrimary": {
+                          "type": "boolean"
+                        },
+                        "colName": {
+                          "type": "string"
+                        },
+                        "contextShortName": {
+                          "type": "string"
+                        },
+                        "showContext": {
+                          "type": "boolean"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "DashboardResponse": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "tenantId": {
+            "type": "string"
+          },
+          "dashboardName": {
+            "type": "string"
+          },
+          "disassociated_tenants": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "is_global": {
+            "type": "boolean"
+          },
+          "dashboardShortName": {
+            "type": "string"
+          },
+          "defaultDataset": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "dashboardDescription": {
+            "type": "string"
+          },
+          "currentOwner": {
+            "type": "string"
+          },
+          "published_dashboards": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "theme": {
+            "type": "string"
+          },
+          "createdBy": {
+            "type": "string"
+          },
+          "modifiedBy": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "totalNumberOfSheets": {
+            "type": "integer"
+          },
+          "dashboardSheets": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "_id": {
+                  "type": "string"
+                },
+                "tenantId": {
+                  "type": "string"
+                },
+                "sheetName": {
+                  "type": "string"
+                },
+                "sheetType": {
+                  "type": "string"
+                },
+                "sheetComponents": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "settings": {
+                  "type": "object",
+                  "properties": {
+                    "overlap": {
+                      "type": "boolean"
+                    },
+                    "grid_gap": {
+                      "type": "integer"
+                    }
+                  }
+                },
+                "copy_count": {
+                  "type": "integer"
+                },
+                "appearance": {
+                  "type": "object",
+                  "properties": {
+                    "background_color": {
+                      "type": "string"
+                    },
+                    "background_img": {
+                      "type": "string"
+                    },
+                    "primary_text_color": {
+                      "type": "string"
+                    },
+                    "border": {
+                      "type": "string"
+                    },
+                    "border_radius": {
+                      "type": "string"
+                    },
+                    "opacity": {
+                      "type": "number"
+                    },
+                    "shadow": {
+                      "type": "string"
+                    },
+                    "padding": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "cellSpacing": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer"
+                  }
+                }
+              }
+            }
+          },
+          "copy_count": {
+            "type": "integer"
+          },
+          "sharedWithUserGroups": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "associated_solutions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "is_public": {
+            "type": "boolean"
+          },
+          "thumbnail": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string"
+              },
+              "modified_date": {
+                "type": "string",
+                "format": "date-time"
+              }
+            }
+          },
+          "favourites": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "createdDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "modifiedDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "permissions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string"
+                },
+                "usergroup_shortnames": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "access": {
+                  "type": "string"
+                },
+                "scope": {
+                  "type": "string"
+                },
+                "_id": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "image": {
+            "type": "string"
+          }
+        }
+      },
+      "ComponentResponse": {
+        "type": "object",
+        "properties": {
+          "defaultDataset": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "theme": {
+            "type": "string"
+          },
+          "components": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "_id": {
+                  "type": "string"
+                },
+                "screen_type": {
+                  "type": "string"
+                },
+                "position": {
+                  "type": "object",
+                  "properties": {
+                    "height": {
+                      "type": "integer"
+                    },
+                    "width": {
+                      "type": "integer"
+                    },
+                    "x": {
+                      "type": "integer"
+                    },
+                    "y": {
+                      "type": "integer"
+                    },
+                    "layer_index": {
+                      "type": "integer"
+                    },
+                    "hide_in_mobile": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "hasUnappliedChanges": {
+                  "type": "boolean"
+                },
+                "appearance": {
+                  "type": "object",
+                  "properties": {
+                    "theme": {
+                      "type": "string"
+                    },
+                    "background_color": {
+                      "type": "string"
+                    },
+                    "background_img": {
+                      "type": "string"
+                    },
+                    "primary_text_color": {
+                      "type": "string"
+                    },
+                    "secondary_text_color": {
+                      "type": "string"
+                    },
+                    "border": {
+                      "type": "string"
+                    },
+                    "border_radius": {
+                      "type": "string"
+                    },
+                    "opacity": {
+                      "type": "integer"
+                    },
+                    "shadow": {
+                      "type": "string"
+                    },
+                    "padding": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "annotations": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "show_annotation": {
+                        "type": "boolean"
+                      },
+                      "type": {
+                        "type": "string"
+                      },
+                      "position": {
+                        "type": "string",
+                        "enum": ["B"]
+                      },
+                      "html_content": {
+                        "type": "string"
+                      },
+                      "style": {
+                        "type": "object",
+                        "properties": {
+                          "background_color": {
+                            "type": "string"
+                          },
+                          "opacity": {
+                            "type": "integer",
+                            "enum": [1]
+                          },
+                          "shadow": {
+                            "type": "string"
+                          },
+                          "padding": {
+                            "type": "string"
+                          },
+                          "border": {
+                            "type": "string",
+                            "enum": [""]
+                          },
+                          "border_radius": {
+                            "type": "string"
+                          },
+                          "wrap": {
+                            "type": "boolean"
+                          },
+                          "length": {
+                            "type": "integer"
+                          }
+                        }
+                      },
+                      "_id": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "viewer_settings": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "option": {
+                        "type": "string"
+                      },
+                      "show_option": {
+                        "type": "boolean"
+                      },
+                      "position": {
+                        "type": "string"
+                      },
+                      "seq_no": {
+                        "type": "string"
+                      },
+                      "download_types": {
+                        "type": "array",
+                        "items": {
+                          "items": {}
+                        }
+                      },
+                      "viewer_layers": {
+                        "type": "array",
+                        "items": {
+                          "items": {}
+                        }
+                      },
+                      "viewer_measures": {
+                        "type": "array",
+                        "items": {
+                          "items": {}
+                        }
+                      },
+                      "visuals": {
+                        "type": "array",
+                        "items": {
+                          "items": {}
+                        }
+                      },
+                      "_id": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "notes": {
+                  "type": "string"
+                },
+                "titles": {
+                  "type": "array",
+                  "items": {
+                    "items": {}
+                  }
+                },
+                "component_type": {
+                  "type": "string"
+                },
+                "zone_id": {
+                  "type": "null"
+                },
+                "components": {
+                  "type": "array",
+                  "items": {
+                    "items": {}
+                  }
+                },
+                "createdBy": {
+                  "type": "string"
+                },
+                "modifiedBy": {
+                  "type": "string"
+                },
+                "created_by": {
+                  "type": "string"
+                },
+                "modified_by": {
+                  "type": "string"
+                },
+                "created_date": {
+                  "type": "string"
+                },
+                "modified_date": {
+                  "type": "string"
+                },
+                "events": {
+                  "type": "array",
+                  "items": {
+                    "items": {}
+                  }
+                },
+                "actions": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "event_type": {
+                        "type": "string"
+                      },
+                      "action": {
+                        "type": "string"
+                      },
+                      "_id": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "general_settings": {
+                  "type": "object",
+                  "properties": {
+                    "use_template": {
+                      "type": "string"
+                    },
+                    "is_locked": {
+                      "type": "boolean"
+                    },
+                    "rotate": {
+                      "type": "boolean"
+                    },
+                    "size": {
+                      "type": "integer"
+                    }
+                  }
+                },
+                "createdDate": {
+                  "type": "string"
+                },
+                "modifiedDate": {
+                  "type": "string"
+                },
+                "config": {
+                  "type": "object",
+                  "properties": {
+                    "_id": {
+                      "type": "string"
+                    },
+                    "tenant_id": {
+                      "type": "string"
+                    },
+                    "visual_family": {
+                      "type": "string"
+                    },
+                    "layers": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "_id": {
+                            "type": "string"
+                          },
+                          "seq_no": {
+                            "type": "integer"
+                          },
+                          "attributes": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "_id": {
+                                  "type": "string"
+                                },
+                                "type": {
+                                  "type": "string"
+                                },
+                                "cols": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "_id": {
+                                        "type": "string"
+                                      },
+                                      "tenantId": {
+                                        "type": "string"
+                                      },
+                                      "endUserCols": {
+                                        "type": "array",
+                                        "items": {
+                                          "items": {}
+                                        }
+                                      },
+                                      "showCol": {
+                                        "type": "boolean"
+                                      },
+                                      "datasetShortName": {
+                                        "type": "string"
+                                      },
+                                      "colSeqNo": {
+                                        "type": "integer"
+                                      },
+                                      "colName": {
+                                        "type": "string"
+                                      },
+                                      "showContext": {
+                                        "type": "boolean"
+                                      },
+                                      "size": {
+                                        "type": "null"
+                                      },
+                                      "contextShortName": {
+                                        "type": "string"
+                                      },
+                                      "hierarchy_shortname": {
+                                        "type": "string"
+                                      },
+                                      "isAggregate": {
+                                        "type": "boolean"
+                                      },
+                                      "aggregateType": {
+                                        "type": "string"
+                                      },
+                                      "series_type": {
+                                        "type": "string"
+                                      },
+                                      "series_settings": {
+                                        "type": "object",
+                                        "properties": {
+                                          "color_settings": {
+                                            "type": "object",
+                                            "properties": {
+                                              "scheme": {
+                                                "type": "string"
+                                              },
+                                              "color": {
+                                                "type": "null"
+                                              },
+                                              "opacity": {
+                                                "type": "integer"
+                                              },
+                                              "based_on_column": {
+                                                "type": "string"
+                                              },
+                                              "conditions": {
+                                                "type": "array",
+                                                "items": {
+                                                  "items": {}
+                                                }
+                                              },
+                                              "_id": {
+                                                "type": "string"
+                                              }
+                                            }
+                                          },
+                                          "label_settings": {
+                                            "type": "object",
+                                            "properties": {
+                                              "show_label": {
+                                                "type": "string"
+                                              },
+                                              "font_family": {
+                                                "type": "string"
+                                              },
+                                              "font_size": {
+                                                "type": "string"
+                                              },
+                                              "font_weight": {
+                                                "type": "string"
+                                              },
+                                              "color": {
+                                                "type": "string"
+                                              },
+                                              "font_style": {
+                                                "type": "string"
+                                              },
+                                              "text_decoration": {
+                                                "type": "string"
+                                              },
+                                              "background_color": {
+                                                "type": "string"
+                                              },
+                                              "position": {
+                                                "type": "string"
+                                              },
+                                              "_id": {
+                                                "type": "string"
+                                              }
+                                            }
+                                          },
+                                          "tooltip_settings": {
+                                            "type": "object",
+                                            "properties": {
+                                              "show_tooltip": {
+                                                "type": "boolean"
+                                              },
+                                              "position": {
+                                                "type": "string"
+                                              },
+                                              "html_content": {
+                                                "type": "string"
+                                              },
+                                              "style": {
+                                                "type": "object",
+                                                "properties": {
+                                                  "background_color": {
+                                                    "type": "string"
+                                                  },
+                                                  "opacity": {
+                                                    "type": "number"
+                                                  },
+                                                  "shadow": {
+                                                    "type": "string"
+                                                  },
+                                                  "padding": {
+                                                    "type": "string"
+                                                  },
+                                                  "border": {
+                                                    "type": "string"
+                                                  },
+                                                  "border_radius": {
+                                                    "type": "string"
+                                                  },
+                                                  "wrap": {
+                                                    "type": "boolean"
+                                                  },
+                                                  "length": {
+                                                    "type": "integer"
+                                                  }
+                                                }
+                                              },
+                                              "_id": {
+                                                "type": "string"
+                                              }
+                                            }
+                                          },
+                                          "tooltip_format_settings": {
+                                            "type": "object",
+                                            "properties": {
+                                              "number_format": {
+                                                "type": "string"
+                                              },
+                                              "date_format": {
+                                                "type": "string"
+                                              },
+                                              "length": {
+                                                "type": "integer"
+                                              },
+                                              "_id": {
+                                                "type": "string"
+                                              }
+                                            }
+                                          },
+                                          "label_format_settings": {
+                                            "type": "object",
+                                            "properties": {
+                                              "wrap": {
+                                                "type": "boolean"
+                                              },
+                                              "length": {
+                                                "type": "null"
+                                              },
+                                              "date_format": {
+                                                "type": "string"
+                                              },
+                                              "number_format": {
+                                                "type": "string"
+                                              },
+                                              "prefix": {
+                                                "type": "string"
+                                              },
+                                              "suffix": {
+                                                "type": "string"
+                                              },
+                                              "rotate": {
+                                                "type": "string"
+                                              },
+                                              "word_break": {
+                                                "type": "boolean"
+                                              },
+                                              "column_width": {
+                                                "type": "null"
+                                              },
+                                              "apply_to": {
+                                                "type": "array",
+                                                "items": {
+                                                  "items": {}
+                                                }
+                                              },
+                                              "_id": {
+                                                "type": "string"
+                                              }
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "series_label": {
+                                        "type": "string"
+                                      },
+                                      "isSortable": {
+                                        "type": "boolean"
+                                      },
+                                      "sortOrder": {
+                                        "type": "string"
+                                      },
+                                      "sortSeqNo": {
+                                        "type": "integer"
+                                      },
+                                      "isPrimary": {
+                                        "type": "boolean"
+                                      },
+                                      "isDefault": {
+                                        "type": "boolean"
+                                      },
+                                      "isExpression": {
+                                        "type": "boolean"
+                                      },
+                                      "isHistogram": {
+                                        "type": "boolean"
+                                      },
+                                      "isPostFetch": {
+                                        "type": "boolean"
+                                      },
+                                      "conditionalFormatting": {
+                                        "type": "object",
+                                        "properties": {
+                                          "is_based_on": {
+                                            "type": "boolean"
+                                          },
+                                          "enable": {
+                                            "type": "boolean"
+                                          },
+                                          "conditions": {
+                                            "type": "array",
+                                            "items": {
+                                              "items": {}
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "columnFooters": {
+                                        "type": "array",
+                                        "items": {
+                                          "items": {}
+                                        }
+                                      },
+                                      "show_footer": {
+                                        "type": "boolean"
+                                      },
+                                      "footer": {
+                                        "type": "array",
+                                        "items": {
+                                          "type": "object",
+                                          "properties": {
+                                            "label": {
+                                              "type": "string"
+                                            },
+                                            "aggregateType": {
+                                              "type": "string"
+                                            },
+                                            "_id": {
+                                              "type": "string"
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "label": {
+                                  "type": "string",
+                                  "enum": ["[Default Attribute]"]
+                                },
+                                "seq_no": {
+                                  "type": "null"
+                                }
+                              }
+                            }
+                          },
+                          "label": {
+                            "type": "string"
+                          },
+                          "stacked_header": {
+                            "type": "array",
+                            "items": {
+                              "items": {}
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "map_config": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string"
+                        },
+                        "border_settings": {
+                          "type": "array",
+                          "items": {
+                            "items": {}
+                          }
+                        }
+                      }
+                    },
+                    "grid_settings": {
+                      "type": "object",
+                      "properties": {
+                        "colors": {
+                          "type": "array",
+                          "items": {
+                            "items": {}
+                          }
+                        }
+                      }
+                    },
+                    "image_config": {
+                      "type": "object",
+                      "properties": {
+                        "animation_interval": {
+                          "type": "null"
+                        },
+                        "animation_type": {
+                          "type": "null"
+                        },
+                        "orientation": {
+                          "type": "null"
+                        },
+                        "images": {
+                          "type": "array",
+                          "items": {
+                            "items": {}
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "preview_component": {
+                  "type": "object",
+                  "properties": {
+                    "_id": {
+                      "type": "string"
+                    },
+                    "screen_type": {
+                      "type": "string"
+                    },
+                    "position": {
+                      "type": "object",
+                      "properties": {
+                        "height": {
+                          "type": "integer"
+                        },
+                        "width": {
+                          "type": "integer"
+                        },
+                        "x": {
+                          "type": "integer"
+                        },
+                        "y": {
+                          "type": "integer"
+                        },
+                        "hide_in_mobile": {
+                          "type": "boolean"
+                        }
+                      }
+                    },
+                    "hasUnappliedChanges": {
+                      "type": "boolean"
+                    },
+                    "appearance": {
+                      "type": "object",
+                      "properties": {
+                        "theme": {
+                          "type": "string"
+                        },
+                        "background_color": {
+                          "type": "string"
+                        },
+                        "background_img": {
+                          "type": "string"
+                        },
+                        "primary_text_color": {
+                          "type": "string"
+                        },
+                        "secondary_text_color": {
+                          "type": "string"
+                        },
+                        "border": {
+                          "type": "string"
+                        },
+                        "border_radius": {
+                          "type": "string"
+                        },
+                        "opacity": {
+                          "type": "integer"
+                        },
+                        "shadow": {
+                          "type": "string"
+                        },
+                        "padding": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "annotations": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "show_annotation": {
+                            "type": "boolean"
+                          },
+                          "type": {
+                            "type": "string"
+                          },
+                          "position": {
+                            "type": "string",
+                            "enum": ["B"]
+                          },
+                          "html_content": {
+                            "type": "string"
+                          },
+                          "style": {
+                            "type": "object",
+                            "properties": {
+                              "background_color": {
+                                "type": "string"
+                              },
+                              "opacity": {
+                                "type": "integer",
+                                "enum": [1]
+                              },
+                              "shadow": {
+                                "type": "string"
+                              },
+                              "padding": {
+                                "type": "string"
+                              },
+                              "border": {
+                                "type": "string",
+                                "enum": [""]
+                              },
+                              "border_radius": {
+                                "type": "string"
+                              },
+                              "wrap": {
+                                "type": "boolean"
+                              },
+                              "length": {
+                                "type": "integer"
+                              }
+                            }
+                          },
+                          "_id": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "viewer_settings": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "option": {
+                            "type": "string"
+                          },
+                          "show_option": {
+                            "type": "boolean"
+                          },
+                          "position": {
+                            "type": "string"
+                          },
+                          "seq_no": {
+                            "type": "string"
+                          },
+                          "download_types": {
+                            "type": "array",
+                            "items": {
+                              "items": {}
+                            }
+                          },
+                          "viewer_layers": {
+                            "type": "array",
+                            "items": {
+                              "items": {}
+                            }
+                          },
+                          "viewer_measures": {
+                            "type": "array",
+                            "items": {
+                              "items": {}
+                            }
+                          },
+                          "visuals": {
+                            "type": "array",
+                            "items": {
+                              "items": {}
+                            }
+                          },
+                          "_id": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "notes": {
+                      "type": "string"
+                    },
+                    "titles": {
+                      "type": "array",
+                      "items": {
+                        "items": {}
+                      }
+                    },
+                    "component_type": {
+                      "type": "string"
+                    },
+                    "zone_id": {
+                      "type": "null"
+                    },
+                    "components": {
+                      "type": "array",
+                      "items": {
+                        "items": {}
+                      }
+                    },
+                    "createdBy": {
+                      "type": "string"
+                    },
+                    "modifiedBy": {
+                      "type": "string"
+                    },
+                    "created_by": {
+                      "type": "string"
+                    },
+                    "modified_by": {
+                      "type": "string"
+                    },
+                    "created_date": {
+                      "type": "string"
+                    },
+                    "modified_date": {
+                      "type": "string"
+                    },
+                    "events": {
+                      "type": "array",
+                      "items": {
+                        "items": {}
+                      }
+                    },
+                    "actions": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "event_type": {
+                            "type": "string"
+                          },
+                          "action": {
+                            "type": "string"
+                          },
+                          "_id": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "general_settings": {
+                      "type": "object",
+                      "properties": {
+                        "use_template": {
+                          "type": "string"
+                        },
+                        "is_locked": {
+                          "type": "boolean"
+                        },
+                        "rotate": {
+                          "type": "boolean"
+                        },
+                        "size": {
+                          "type": "integer"
+                        }
+                      }
+                    },
+                    "createdDate": {
+                      "type": "string"
+                    },
+                    "modifiedDate": {
+                      "type": "string"
+                    },
+                    "config": {
+                      "type": "object",
+                      "properties": {
+                        "_id": {
+                          "type": "string"
+                        },
+                        "tenant_id": {
+                          "type": "string"
+                        },
+                        "visual_family": {
+                          "type": "string"
+                        },
+                        "layers": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "_id": {
+                                "type": "string"
+                              },
+                              "seq_no": {
+                                "type": "integer"
+                              },
+                              "attributes": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "_id": {
+                                      "type": "string"
+                                    },
+                                    "type": {
+                                      "type": "string"
+                                    },
+                                    "cols": {
+                                      "type": "array",
+                                      "items": {
+                                        "type": "object",
+                                        "properties": {
+                                          "_id": {
+                                            "type": "string"
+                                          },
+                                          "tenantId": {
+                                            "type": "string"
+                                          },
+                                          "endUserCols": {
+                                            "type": "array",
+                                            "items": {
+                                              "items": {}
+                                            }
+                                          },
+                                          "showCol": {
+                                            "type": "boolean"
+                                          },
+                                          "datasetShortName": {
+                                            "type": "string"
+                                          },
+                                          "colSeqNo": {
+                                            "type": "integer"
+                                          },
+                                          "colName": {
+                                            "type": "string"
+                                          },
+                                          "showContext": {
+                                            "type": "boolean"
+                                          },
+                                          "size": {
+                                            "type": "null"
+                                          },
+                                          "contextShortName": {
+                                            "type": "string"
+                                          },
+                                          "hierarchy_shortname": {
+                                            "type": "string"
+                                          },
+                                          "isAggregate": {
+                                            "type": "boolean"
+                                          },
+                                          "aggregateType": {
+                                            "type": "string"
+                                          },
+                                          "series_type": {
+                                            "type": "string"
+                                          },
+                                          "series_settings": {
+                                            "type": "object",
+                                            "properties": {
+                                              "color_settings": {
+                                                "type": "object",
+                                                "properties": {
+                                                  "scheme": {
+                                                    "type": "string"
+                                                  },
+                                                  "color": {
+                                                    "type": "null"
+                                                  },
+                                                  "opacity": {
+                                                    "type": "integer"
+                                                  },
+                                                  "based_on_column": {
+                                                    "type": "string"
+                                                  },
+                                                  "conditions": {
+                                                    "type": "array",
+                                                    "items": {
+                                                      "items": {}
+                                                    }
+                                                  },
+                                                  "_id": {
+                                                    "type": "string"
+                                                  }
+                                                }
+                                              },
+                                              "label_settings": {
+                                                "type": "object",
+                                                "properties": {
+                                                  "show_label": {
+                                                    "type": "string"
+                                                  },
+                                                  "font_family": {
+                                                    "type": "string"
+                                                  },
+                                                  "font_size": {
+                                                    "type": "string"
+                                                  },
+                                                  "font_weight": {
+                                                    "type": "string"
+                                                  },
+                                                  "color": {
+                                                    "type": "string"
+                                                  },
+                                                  "font_style": {
+                                                    "type": "string"
+                                                  },
+                                                  "text_decoration": {
+                                                    "type": "string"
+                                                  },
+                                                  "background_color": {
+                                                    "type": "string"
+                                                  },
+                                                  "position": {
+                                                    "type": "string"
+                                                  },
+                                                  "_id": {
+                                                    "type": "string"
+                                                  }
+                                                }
+                                              },
+                                              "tooltip_settings": {
+                                                "type": "object",
+                                                "properties": {
+                                                  "show_tooltip": {
+                                                    "type": "boolean"
+                                                  },
+                                                  "position": {
+                                                    "type": "string"
+                                                  },
+                                                  "html_content": {
+                                                    "type": "string"
+                                                  },
+                                                  "style": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                      "background_color": {
+                                                        "type": "string"
+                                                      },
+                                                      "opacity": {
+                                                        "type": "number"
+                                                      },
+                                                      "shadow": {
+                                                        "type": "string"
+                                                      },
+                                                      "padding": {
+                                                        "type": "string"
+                                                      },
+                                                      "border": {
+                                                        "type": "string"
+                                                      },
+                                                      "border_radius": {
+                                                        "type": "string"
+                                                      },
+                                                      "wrap": {
+                                                        "type": "boolean"
+                                                      },
+                                                      "length": {
+                                                        "type": "integer"
+                                                      }
+                                                    }
+                                                  },
+                                                  "_id": {
+                                                    "type": "string"
+                                                  }
+                                                }
+                                              },
+                                              "tooltip_format_settings": {
+                                                "type": "object",
+                                                "properties": {
+                                                  "number_format": {
+                                                    "type": "string"
+                                                  },
+                                                  "date_format": {
+                                                    "type": "string"
+                                                  },
+                                                  "length": {
+                                                    "type": "integer"
+                                                  },
+                                                  "_id": {
+                                                    "type": "string"
+                                                  }
+                                                }
+                                              },
+                                              "label_format_settings": {
+                                                "type": "object",
+                                                "properties": {
+                                                  "wrap": {
+                                                    "type": "boolean"
+                                                  },
+                                                  "length": {
+                                                    "type": "null"
+                                                  },
+                                                  "date_format": {
+                                                    "type": "string"
+                                                  },
+                                                  "number_format": {
+                                                    "type": "string"
+                                                  },
+                                                  "prefix": {
+                                                    "type": "string"
+                                                  },
+                                                  "suffix": {
+                                                    "type": "string"
+                                                  },
+                                                  "rotate": {
+                                                    "type": "string"
+                                                  },
+                                                  "word_break": {
+                                                    "type": "boolean"
+                                                  },
+                                                  "column_width": {
+                                                    "type": "null"
+                                                  },
+                                                  "apply_to": {
+                                                    "type": "array",
+                                                    "items": {
+                                                      "items": {}
+                                                    }
+                                                  },
+                                                  "_id": {
+                                                    "type": "string"
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          },
+                                          "series_label": {
+                                            "type": "string"
+                                          },
+                                          "isSortable": {
+                                            "type": "boolean"
+                                          },
+                                          "sortOrder": {
+                                            "type": "string"
+                                          },
+                                          "sortSeqNo": {
+                                            "type": "integer"
+                                          },
+                                          "isPrimary": {
+                                            "type": "boolean"
+                                          },
+                                          "isDefault": {
+                                            "type": "boolean"
+                                          },
+                                          "isExpression": {
+                                            "type": "boolean"
+                                          },
+                                          "isHistogram": {
+                                            "type": "boolean"
+                                          },
+                                          "isPostFetch": {
+                                            "type": "boolean"
+                                          },
+                                          "conditionalFormatting": {
+                                            "type": "object",
+                                            "properties": {
+                                              "is_based_on": {
+                                                "type": "boolean"
+                                              },
+                                              "enable": {
+                                                "type": "boolean"
+                                              },
+                                              "conditions": {
+                                                "type": "array",
+                                                "items": {
+                                                  "items": {}
+                                                }
+                                              }
+                                            }
+                                          },
+                                          "columnFooters": {
+                                            "type": "array",
+                                            "items": {
+                                              "items": {}
+                                            }
+                                          },
+                                          "show_footer": {
+                                            "type": "boolean"
+                                          },
+                                          "footer": {
+                                            "type": "array",
+                                            "items": {
+                                              "type": "object",
+                                              "properties": {
+                                                "label": {
+                                                  "type": "string"
+                                                },
+                                                "aggregateType": {
+                                                  "type": "string"
+                                                },
+                                                "_id": {
+                                                  "type": "string"
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "label": {
+                                      "type": "string",
+                                      "enum": ["[Default Attribute]"]
+                                    },
+                                    "seq_no": {
+                                      "type": "null"
+                                    }
+                                  }
+                                }
+                              },
+                              "label": {
+                                "type": "string"
+                              },
+                              "stacked_header": {
+                                "type": "array",
+                                "items": {
+                                  "items": {}
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "map_config": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string"
+                            },
+                            "border_settings": {
+                              "type": "array",
+                              "items": {
+                                "items": {}
+                              }
+                            }
+                          }
+                        },
+                        "grid_settings": {
+                          "type": "object",
+                          "properties": {
+                            "colors": {
+                              "type": "array",
+                              "items": {
+                                "items": {}
+                              }
+                            }
+                          }
+                        },
+                        "image_config": {
+                          "type": "object",
+                          "properties": {
+                            "animation_interval": {
+                              "type": "null"
+                            },
+                            "animation_type": {
+                              "type": "null"
+                            },
+                            "orientation": {
+                              "type": "null"
+                            },
+                            "images": {
+                              "type": "array",
+                              "items": {
+                                "items": {}
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "has_unapplied_changes": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "SpecificComponentsResponse": {
+        "type": "object",
+        "properties": {
+          "componentConfigs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "_id": {
+                  "type": "string"
+                },
+                "screen_type": {
+                  "type": "string"
+                },
+                "position": {
+                  "type": "object",
+                  "properties": {
+                    "height": {
+                      "type": "integer"
+                    },
+                    "width": {
+                      "type": "integer"
+                    },
+                    "x": {
+                      "type": "integer"
+                    },
+                    "y": {
+                      "type": "integer"
+                    },
+                    "layer_index": {
+                      "type": "integer"
+                    },
+                    "hide_in_mobile": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "hasUnappliedChanges": {
+                  "type": "boolean"
+                },
+                "appearance": {
+                  "type": "object",
+                  "properties": {
+                    "theme": {
+                      "type": "string"
+                    },
+                    "background_color": {
+                      "type": "string"
+                    },
+                    "background_img": {
+                      "type": "string"
+                    },
+                    "primary_text_color": {
+                      "type": "string"
+                    },
+                    "secondary_text_color": {
+                      "type": "string"
+                    },
+                    "border": {
+                      "type": "string"
+                    },
+                    "border_radius": {
+                      "type": "string"
+                    },
+                    "opacity": {
+                      "type": "integer"
+                    },
+                    "shadow": {
+                      "type": "string"
+                    },
+                    "padding": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "annotations": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "show_annotation": {
+                        "type": "boolean"
+                      },
+                      "type": {
+                        "type": "string"
+                      },
+                      "position": {
+                        "type": "string",
+                        "enum": ["B"]
+                      },
+                      "html_content": {
+                        "type": "string"
+                      },
+                      "style": {
+                        "type": "object",
+                        "properties": {
+                          "background_color": {
+                            "type": "string"
+                          },
+                          "opacity": {
+                            "type": "integer",
+                            "enum": [1]
+                          },
+                          "shadow": {
+                            "type": "string"
+                          },
+                          "padding": {
+                            "type": "string"
+                          },
+                          "border": {
+                            "type": "string",
+                            "enum": [""]
+                          },
+                          "border_radius": {
+                            "type": "string"
+                          },
+                          "wrap": {
+                            "type": "boolean"
+                          },
+                          "length": {
+                            "type": "integer"
+                          }
+                        }
+                      },
+                      "_id": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "viewer_settings": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "option": {
+                        "type": "string"
+                      },
+                      "show_option": {
+                        "type": "boolean"
+                      },
+                      "position": {
+                        "type": "string"
+                      },
+                      "seq_no": {
+                        "type": "string"
+                      },
+                      "download_types": {
+                        "type": "array",
+                        "items": {
+                          "items": {}
+                        }
+                      },
+                      "viewer_layers": {
+                        "type": "array",
+                        "items": {
+                          "items": {}
+                        }
+                      },
+                      "viewer_measures": {
+                        "type": "array",
+                        "items": {
+                          "items": {}
+                        }
+                      },
+                      "visuals": {
+                        "type": "array",
+                        "items": {
+                          "items": {}
+                        }
+                      },
+                      "_id": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "notes": {
+                  "type": "string"
+                },
+                "titles": {
+                  "type": "array",
+                  "items": {
+                    "items": {}
+                  }
+                },
+                "component_type": {
+                  "type": "string"
+                },
+                "zone_id": {
+                  "type": "null"
+                },
+                "components": {
+                  "type": "array",
+                  "items": {
+                    "items": {}
+                  }
+                },
+                "createdBy": {
+                  "type": "string"
+                },
+                "modifiedBy": {
+                  "type": "string"
+                },
+                "created_by": {
+                  "type": "string"
+                },
+                "modified_by": {
+                  "type": "string"
+                },
+                "created_date": {
+                  "type": "string"
+                },
+                "modified_date": {
+                  "type": "string"
+                },
+                "events": {
+                  "type": "array",
+                  "items": {
+                    "items": {}
+                  }
+                },
+                "actions": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "event_type": {
+                        "type": "string"
+                      },
+                      "action": {
+                        "type": "string"
+                      },
+                      "_id": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "general_settings": {
+                  "type": "object",
+                  "properties": {
+                    "use_template": {
+                      "type": "string"
+                    },
+                    "is_locked": {
+                      "type": "boolean"
+                    },
+                    "rotate": {
+                      "type": "boolean"
+                    },
+                    "size": {
+                      "type": "integer"
+                    }
+                  }
+                },
+                "createdDate": {
+                  "type": "string"
+                },
+                "modifiedDate": {
+                  "type": "string"
+                },
+                "config": {
+                  "type": "object",
+                  "properties": {
+                    "_id": {
+                      "type": "string"
+                    },
+                    "tenant_id": {
+                      "type": "string"
+                    },
+                    "visual_family": {
+                      "type": "string"
+                    },
+                    "layers": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "_id": {
+                            "type": "string"
+                          },
+                          "seq_no": {
+                            "type": "integer"
+                          },
+                          "attributes": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "_id": {
+                                  "type": "string"
+                                },
+                                "type": {
+                                  "type": "string"
+                                },
+                                "cols": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "_id": {
+                                        "type": "string"
+                                      },
+                                      "tenantId": {
+                                        "type": "string"
+                                      },
+                                      "endUserCols": {
+                                        "type": "array",
+                                        "items": {
+                                          "items": {}
+                                        }
+                                      },
+                                      "showCol": {
+                                        "type": "boolean"
+                                      },
+                                      "datasetShortName": {
+                                        "type": "string"
+                                      },
+                                      "colSeqNo": {
+                                        "type": "integer"
+                                      },
+                                      "colName": {
+                                        "type": "string"
+                                      },
+                                      "showContext": {
+                                        "type": "boolean"
+                                      },
+                                      "size": {
+                                        "type": "null"
+                                      },
+                                      "contextShortName": {
+                                        "type": "string"
+                                      },
+                                      "hierarchy_shortname": {
+                                        "type": "string"
+                                      },
+                                      "isAggregate": {
+                                        "type": "boolean"
+                                      },
+                                      "aggregateType": {
+                                        "type": "string"
+                                      },
+                                      "series_type": {
+                                        "type": "string"
+                                      },
+                                      "series_settings": {
+                                        "type": "object",
+                                        "properties": {
+                                          "color_settings": {
+                                            "type": "object",
+                                            "properties": {
+                                              "scheme": {
+                                                "type": "string"
+                                              },
+                                              "color": {
+                                                "type": "null"
+                                              },
+                                              "opacity": {
+                                                "type": "integer"
+                                              },
+                                              "based_on_column": {
+                                                "type": "string"
+                                              },
+                                              "conditions": {
+                                                "type": "array",
+                                                "items": {
+                                                  "items": {}
+                                                }
+                                              },
+                                              "_id": {
+                                                "type": "string"
+                                              }
+                                            }
+                                          },
+                                          "label_settings": {
+                                            "type": "object",
+                                            "properties": {
+                                              "show_label": {
+                                                "type": "string"
+                                              },
+                                              "font_family": {
+                                                "type": "string"
+                                              },
+                                              "font_size": {
+                                                "type": "string"
+                                              },
+                                              "font_weight": {
+                                                "type": "string"
+                                              },
+                                              "color": {
+                                                "type": "string"
+                                              },
+                                              "font_style": {
+                                                "type": "string"
+                                              },
+                                              "text_decoration": {
+                                                "type": "string"
+                                              },
+                                              "background_color": {
+                                                "type": "string"
+                                              },
+                                              "position": {
+                                                "type": "string"
+                                              },
+                                              "_id": {
+                                                "type": "string"
+                                              }
+                                            }
+                                          },
+                                          "tooltip_settings": {
+                                            "type": "object",
+                                            "properties": {
+                                              "show_tooltip": {
+                                                "type": "boolean"
+                                              },
+                                              "position": {
+                                                "type": "string"
+                                              },
+                                              "html_content": {
+                                                "type": "string"
+                                              },
+                                              "style": {
+                                                "type": "object",
+                                                "properties": {
+                                                  "background_color": {
+                                                    "type": "string"
+                                                  },
+                                                  "opacity": {
+                                                    "type": "number"
+                                                  },
+                                                  "shadow": {
+                                                    "type": "string"
+                                                  },
+                                                  "padding": {
+                                                    "type": "string"
+                                                  },
+                                                  "border": {
+                                                    "type": "string"
+                                                  },
+                                                  "border_radius": {
+                                                    "type": "string"
+                                                  },
+                                                  "wrap": {
+                                                    "type": "boolean"
+                                                  },
+                                                  "length": {
+                                                    "type": "integer"
+                                                  }
+                                                }
+                                              },
+                                              "_id": {
+                                                "type": "string"
+                                              }
+                                            }
+                                          },
+                                          "tooltip_format_settings": {
+                                            "type": "object",
+                                            "properties": {
+                                              "number_format": {
+                                                "type": "string"
+                                              },
+                                              "date_format": {
+                                                "type": "string"
+                                              },
+                                              "length": {
+                                                "type": "integer"
+                                              },
+                                              "_id": {
+                                                "type": "string"
+                                              }
+                                            }
+                                          },
+                                          "label_format_settings": {
+                                            "type": "object",
+                                            "properties": {
+                                              "wrap": {
+                                                "type": "boolean"
+                                              },
+                                              "length": {
+                                                "type": "null"
+                                              },
+                                              "date_format": {
+                                                "type": "string"
+                                              },
+                                              "number_format": {
+                                                "type": "string"
+                                              },
+                                              "prefix": {
+                                                "type": "string"
+                                              },
+                                              "suffix": {
+                                                "type": "string"
+                                              },
+                                              "rotate": {
+                                                "type": "string"
+                                              },
+                                              "word_break": {
+                                                "type": "boolean"
+                                              },
+                                              "column_width": {
+                                                "type": "string"
+                                              },
+                                              "apply_to": {
+                                                "type": "array",
+                                                "items": {
+                                                  "items": {}
+                                                }
+                                              },
+                                              "_id": {
+                                                "type": "string"
+                                              }
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "series_label": {
+                                        "type": "string"
+                                      },
+                                      "isSortable": {
+                                        "type": "boolean"
+                                      },
+                                      "sortOrder": {
+                                        "type": "string"
+                                      },
+                                      "sortSeqNo": {
+                                        "type": "integer"
+                                      },
+                                      "isPrimary": {
+                                        "type": "boolean"
+                                      },
+                                      "isDefault": {
+                                        "type": "boolean"
+                                      },
+                                      "isExpression": {
+                                        "type": "boolean"
+                                      },
+                                      "isHistogram": {
+                                        "type": "boolean"
+                                      },
+                                      "isPostFetch": {
+                                        "type": "boolean"
+                                      },
+                                      "conditionalFormatting": {
+                                        "type": "object",
+                                        "properties": {
+                                          "is_based_on": {
+                                            "type": "boolean"
+                                          },
+                                          "enable": {
+                                            "type": "boolean"
+                                          },
+                                          "conditions": {
+                                            "type": "array",
+                                            "items": {
+                                              "items": {}
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "columnFooters": {
+                                        "type": "array",
+                                        "items": {
+                                          "items": {}
+                                        }
+                                      },
+                                      "show_footer": {
+                                        "type": "boolean"
+                                      },
+                                      "footer": {
+                                        "type": "array",
+                                        "items": {
+                                          "type": "object",
+                                          "properties": {
+                                            "label": {
+                                              "type": "string"
+                                            },
+                                            "aggregateType": {
+                                              "type": "string"
+                                            },
+                                            "_id": {
+                                              "type": "string"
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "label": {
+                                  "type": "string"
+                                },
+                                "seq_no": {
+                                  "type": "null"
+                                }
+                              }
+                            }
+                          },
+                          "label": {
+                            "type": "string"
+                          },
+                          "stacked_header": {
+                            "type": "array",
+                            "items": {
+                              "items": {}
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "map_config": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string"
+                        },
+                        "border_settings": {
+                          "type": "array",
+                          "items": {
+                            "items": {}
+                          }
+                        }
+                      }
+                    },
+                    "grid_settings": {
+                      "type": "object",
+                      "properties": {
+                        "template_type": {
+                          "type": "null"
+                        },
+                        "colors": {
+                          "type": "array",
+                          "items": {
+                            "items": {}
+                          }
+                        }
+                      }
+                    },
+                    "image_config": {
+                      "type": "object",
+                      "properties": {
+                        "animation_interval": {
+                          "type": "null"
+                        },
+                        "animation_type": {
+                          "type": "null"
+                        },
+                        "orientation": {
+                          "type": "null"
+                        },
+                        "images": {
+                          "type": "array",
+                          "items": {
+                            "items": {}
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "preview_component": {
+                  "type": "string"
+                },
+                "dashboard_id": {
+                  "type": "string"
+                },
+                "sheet_id": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "usedDatasets": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}
