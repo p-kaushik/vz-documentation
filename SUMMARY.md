@@ -11,4 +11,5 @@
 
 ## API Documentation
 
+* [Appverse APIs](api-documentation/appverse-apis.md)
 * [Public APIs](api-documentation/public-apis.md)
