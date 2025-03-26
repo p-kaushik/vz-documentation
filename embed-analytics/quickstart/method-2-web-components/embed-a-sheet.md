@@ -14,7 +14,7 @@ Visual can be embedded using <mark style="color:blue;">\<vz-sheet></mark> compon
 ```
 <vz-sheet
     properties='{
-	"apiUrl":"https://analytics.dev.viewzenlabs.in",
+	"apiUrl":"https://analytics.viewzenlabs.in",
 	"tenantId":"6627466466f7c7271de37edd",
 	"dashboardId":"667121614b6547001c8a7757",
 	"sheetId":"6671bcb74b6547001c8a784d"
