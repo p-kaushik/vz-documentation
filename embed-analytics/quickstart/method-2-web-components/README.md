@@ -42,13 +42,13 @@ description: >-
 <head>
     ...
     // Styles and Javascript preload bundles
-    <link rel="stylesheet" href="http://{{api_url}}/styles.css" media="print" onload="this.media='all'" />
-    <link rel="modulepreload" href="http://{{api_url}}/preload.js" />
+    <link rel="stylesheet" href="https://embed.viewzenlabs.in/styles.css" media="print" onload="this.media='all'" />
+    <link rel="modulepreload" href="https://embed.viewzenlabs.in/visual-preloader.js" />
 </head>
 <body>
     ...
     // Javascript bundles
-    <script src="http://{{api_url}}/bundle.js" type="module"></script>
+    <script src="https://embed.viewzenlabs.in/visual-bundle.js" type="module"></script>
 </body>
 </html>
 ```
