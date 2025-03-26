@@ -1,14 +1,14 @@
 ---
-icon: file-spreadsheet
+icon: chart-mixed
 ---
 
-# Embed a Sheet
+# Embed a visual
 
-Sheet is a collection of Visuals and Filters arranged in a specific layout to represent analysis.&#x20;
+Visuals in ViewZen Analytics can be Charts, Grids, Pivot, Cards, Images, Text, Maps etc.
 
-## Sheet
+## Visual
 
-Visual can be embedded using <mark style="color:blue;">\<viewzen-sheet></mark> component.
+Visual can be embedded using <mark style="color:blue;">\<viewzen-visual></mark> component.
 
 {% tabs %}
 {% tab title="app.component.ts" %}
@@ -25,6 +25,7 @@ export class AppComponent {
 	public tenantId: string = "6627466466f7c7271de37edd";
 	public dashboardId: string = "667121614b6547001c8a7757";
 	public sheetId: string = "6671bcb74b6547001c8a784d";
+	public componentId: string = "6671be964b6547001c8a7f23";
 
 	constructor() {
 		ViewzenEnvironment.apiURL = "https://analytics.viewzenlabs.in";
@@ -35,13 +36,14 @@ export class AppComponent {
 
 {% tab title="app.component.html" %}
 ```html
-<viewzen-sheet
+<viewzen-visual
 	[tenantId]="tenantId"
 	[dashboardId]="dashboardId"
-	[sheetId]="sheetId">
-</viewzen-sheet>
+	[sheetId]="sheetId"
+	[componentId]="componentId">
+</viewzen-visual>
 ```
 {% endtab %}
 {% endtabs %}
 
-<figure><img src="../.gitbook/assets/Screenshot from 2024-12-10 17-38-28.png" alt=""><figcaption><p>Embedded Sheet view</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/Screenshot from 2024-12-10 17-18-23.png" alt=""><figcaption><p>Embedded Visual view</p></figcaption></figure>

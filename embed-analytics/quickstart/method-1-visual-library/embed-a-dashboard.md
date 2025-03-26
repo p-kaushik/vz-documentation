@@ -1,14 +1,14 @@
 ---
-icon: chart-mixed
+icon: rectangle-vertical-history
 ---
 
-# Embed a visual
+# Embed a dashboard
 
-Visuals in ViewZen Analytics can be Charts, Grids, Pivot, Cards, Images, Text, Maps etc.
+Dashboard is a collection of sheets to represent all analysis related to specific topic
 
-## Visual
+## Dashboard
 
-Visual can be embedded using <mark style="color:blue;">\<viewzen-visual></mark> component.
+Visual can be embedded using <mark style="color:blue;">\<viewzen-dashboard></mark> component.
 
 {% tabs %}
 {% tab title="app.component.ts" %}
@@ -24,8 +24,6 @@ import { ViewzenEnvironment } from "@viewzen/visual";
 export class AppComponent {
 	public tenantId: string = "6627466466f7c7271de37edd";
 	public dashboardId: string = "667121614b6547001c8a7757";
-	public sheetId: string = "6671bcb74b6547001c8a784d";
-	public componentId: string = "6671be964b6547001c8a7f23";
 
 	constructor() {
 		ViewzenEnvironment.apiURL = "https://analytics.viewzenlabs.in";
@@ -36,14 +34,12 @@ export class AppComponent {
 
 {% tab title="app.component.html" %}
 ```html
-<viewzen-visual
+<viewzen-dashboard
 	[tenantId]="tenantId"
-	[dashboardId]="dashboardId"
-	[sheetId]="sheetId"
-	[componentId]="componentId">
-</viewzen-visual>
+	[dashboardId]="dashboardId">
+</viewzen-dashboard>
 ```
 {% endtab %}
 {% endtabs %}
 
-<figure><img src="../.gitbook/assets/Screenshot from 2024-12-10 17-18-23.png" alt=""><figcaption><p>Embedded Visual view</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/Screenshot from 2024-12-10 17-47-54.png" alt=""><figcaption><p>Embedded Dashboard view</p></figcaption></figure>
